@@ -22,6 +22,8 @@ checkgpu:
 
 refactor: format lint
 
+test_tox:
+	tox -e py
 
 		
 all: install format lint test  
