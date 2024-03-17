@@ -15,7 +15,7 @@ class DbManager:
         """
         self.engine = create_engine(database_url)
         self.session_maker = sessionmaker(bind=self.engine)
-        self.session = self.Session_maker() 
+        self.session = self.session_maker() 
 
     def add_new_prediction(self, sepal_length_cm, sepal_width_cm, petal_length_cm, petal_width_cm, prediction, confidence, date_str):
         """Creates a new prediction record and adds it to the database.
@@ -95,4 +95,3 @@ if __name__ == "__main__":
     DATABASE_URL = os.getenv("DATABASE_URL")
 
     manager = DbManager(database_url=DATABASE_URL)
-
