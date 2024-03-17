@@ -6,9 +6,6 @@
 [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=DavidNavarroSaiz_ABIChallenge_David_Navarro)](https://sonarcloud.io/summary/new_code?id=DavidNavarroSaiz_ABIChallenge_David_Navarro)
 
 
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=DavidNavarroSaiz_ABIChallenge_David_Navarro)
-
-
 
 <h3 align="center">Abi challenge</h3>
 
