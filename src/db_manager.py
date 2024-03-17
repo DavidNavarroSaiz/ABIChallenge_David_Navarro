@@ -14,7 +14,7 @@ class DbManager:
             database_url (str): The URL of the database.
         """
         self.engine = create_engine(database_url)
-        self.Session_maker = sessionmaker(bind=self.engine)
+        self.session_maker = sessionmaker(bind=self.engine)
         self.session = self.Session_maker() 
 
     def add_new_prediction(self, sepal_length_cm, sepal_width_cm, petal_length_cm, petal_width_cm, prediction, confidence, date_str):
@@ -95,6 +95,4 @@ if __name__ == "__main__":
     DATABASE_URL = os.getenv("DATABASE_URL")
 
     manager = DbManager(database_url=DATABASE_URL)
-    # date = datetime.today()
-    # manager.add_new_prediction(0.1, 0.2,0.4,0.3, "petal",0.34,date )
-    # manager.add_new_prediction(0.2, 0.3,0.4,0.5, "petalic 2",0.34,date )
+
