@@ -1,6 +1,13 @@
 <a name="readme-top"></a>
 [![Build](https://github.com/DavidNavarroSaiz/ABIChallenge_David_Navarro/actions/workflows/build.yml/badge.svg)](https://github.com/DavidNavarroSaiz/ABIChallenge_David_Navarro/actions/workflows/build.yml)
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=DavidNavarroSaiz_ABIChallenge_David_Navarro&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=DavidNavarroSaiz_ABIChallenge_David_Navarro)
+
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=DavidNavarroSaiz_ABIChallenge_David_Navarro)](https://sonarcloud.io/summary/new_code?id=DavidNavarroSaiz_ABIChallenge_David_Navarro)
+
+
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/summary/new_code?id=DavidNavarroSaiz_ABIChallenge_David_Navarro)
+
 
 
 <h3 align="center">Abi challenge</h3>
