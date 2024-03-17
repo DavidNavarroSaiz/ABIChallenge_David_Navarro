@@ -5,8 +5,6 @@ from joblib import load
 
 from collections import namedtuple
 
-from collections import namedtuple
-from src.models import KNNModelTraining, Predictor
 
 # Define a namedtuple to represent the input data
 PredictionData = namedtuple('PredictionData', ['sepal_length_cm', 'sepal_width_cm', 'petal_length_cm', 'petal_width_cm'])
