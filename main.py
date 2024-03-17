@@ -7,7 +7,7 @@ from src.db import Base
 from src.db_manager import DbManager
 import uvicorn
 import os
-from src.model_training import KNNModel_Trainning
+from src.model_training import KNNModelTraining
 from src.predictor import Predictor
 
 # FastAPI app instance
@@ -16,7 +16,7 @@ app = FastAPI()
 # Set up database connection
 DATABASE_URL = os.getenv("DATABASE_URL")
 engine = create_engine(DATABASE_URL)
-
+dir_models = './src/models'
 inspector = inspect(engine)
 if not inspector.has_table("Abi_InferenceTable"):
     print("creating table")
@@ -28,13 +28,13 @@ def load_model():
     Load the latest trained model.
     If no model is found, train a new one.
     """
-    model_files = [f for f in os.listdir('./src/models') if f.startswith('knn_model') and f.endswith('.joblib')]
+    model_files = [f for f in os.listdir(dir_models) if f.startswith('knn_model') and f.endswith('.joblib')]
     if not model_files:
         print("No trained model found. Training a new one...")
         train_model()
-        model_files = [f for f in os.listdir('./src/models') if f.startswith('knn_model') and f.endswith('.joblib')]
+        model_files = [f for f in os.listdir(dir_models) if f.startswith('knn_model') and f.endswith('.joblib')]
     latest_model = max(model_files)
-    name_last_model = os.path.join('./src/models', latest_model)
+    name_last_model = os.path.join(dir_models, latest_model)
     print("predicting with model: ", name_last_model)
     return load(name_last_model)
 
@@ -43,7 +43,7 @@ def train_model():
     Train the KNN model over the Iris.csv Dataset.
     """
     try:
-        knn_model = KNNModel_Trainning('./src/Iris.csv', './src/models')
+        knn_model = KNNModelTraining('./src/Iris.csv', dir_models)
         message = knn_model.train_and_save_model()
         print(f"Model trained and saved successfully: {message}")
     except Exception as e:
@@ -68,7 +68,7 @@ class PredictionData(BaseModel):
 # Endpoints
 
 @app.post("/train/")
-async def train_model(data_file: str = './src/Iris.csv', model_directory: str = './src/models'):
+async def train_model(data_file: str = './src/Iris.csv', model_directory: str = dir_models):
     """
     Endpoint to train the KNN model over the Iris.csv Dataset.
 
@@ -78,7 +78,7 @@ async def train_model(data_file: str = './src/Iris.csv', model_directory: str = 
         dict: Success message.
     """
     try:
-        knn_model = KNNModel_Trainning(data_file, model_directory)
+        knn_model = KNNModelTraining(data_file, model_directory)
         message = knn_model.train_and_save_model()
         # Load the latest trained model after training
         global predict_model

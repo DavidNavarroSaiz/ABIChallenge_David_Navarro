@@ -1,6 +1,6 @@
 import pytest
 from src.predictor import Predictor
-from src.model_training import KNNModel_Trainning
+from src.model_training import KNNModelTraining
 from joblib import load
 
 from collections import namedtuple
@@ -9,7 +9,7 @@ from collections import namedtuple
 PredictionData = namedtuple('PredictionData', ['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm'])
 
 def test_predictor():
-    knn_model = KNNModel_Trainning(data_file='./src/Iris.csv', model_directory='./models')
+    knn_model = KNNModelTraining(data_file='./src/Iris.csv', model_directory='./models')
     
     # Train and save the model
     model = knn_model.train_model()
