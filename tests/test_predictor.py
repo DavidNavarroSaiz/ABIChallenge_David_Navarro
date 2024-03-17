@@ -1,36 +1,31 @@
 import pytest
 from src.predictor import Predictor
-from unittest.mock import Mock
+from joblib import load
 
-@pytest.fixture
-def mock_model():
-    return Mock()
+from collections import namedtuple
 
-@pytest.fixture
-def mock_db_manager():
-    return Mock()
+# Define a namedtuple to represent the input data
+PredictionData = namedtuple('PredictionData', ['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm'])
 
-@pytest.fixture
-def predictor(mock_model, mock_db_manager):
-    return Predictor(mock_model)
-
-def test_predict_with_confidence(predictor, mock_model, mock_db_manager):
-    # Mock the model's predict_proba and predict methods
-    mock_model.predict_proba.return_value = [[0.2, 0.8]]  # Example probabilities
-    mock_model.predict.return_value = ["Iris-versicolor"]  # Example predicted class
-
+def test_predictor():
+    model_path = "./src/models/knn_model_1.joblib"
+    model = load(model_path)
+    # Create a Predictor object with the loaded model
+    predictor = Predictor(model)
     # Sample input data for prediction
     sample_data = [
-        {"SepalLengthCm": 5.1, "SepalWidthCm": 3.5, "PetalLengthCm": 1.4, "PetalWidthCm": 0.2},
-        {"SepalLengthCm": 7.0, "SepalWidthCm": 3.2, "PetalLengthCm": 4.7, "PetalWidthCm": 1.4},
-        {"SepalLengthCm": 6.5, "SepalWidthCm": 3.2, "PetalLengthCm": 5.1, "PetalWidthCm": 2.0}
+        PredictionData(SepalLengthCm=5.1, SepalWidthCm=3.5, PetalLengthCm=1.4, PetalWidthCm=0.2),
+        PredictionData(SepalLengthCm=7.0, SepalWidthCm=3.2, PetalLengthCm=4.7, PetalWidthCm=1.4),
+        PredictionData(SepalLengthCm=6.5, SepalWidthCm=3.2, PetalLengthCm=5.1, PetalWidthCm=2.0)
     ]
-
     # Perform prediction with confidence
     predictions = predictor.predict_with_confidence(sample_data)
-
-    # Assert that DbManager method was called correctly
-    assert mock_db_manager.add_new_prediction.call_count == len(sample_data)
-
-    # Assert the returned predictions
-    assert predictions == [{"predicted_class": "Iris-versicolor", "confidence_scores": 0.8}]
+    # Define expected predictions and confidence scores
+    expected_predictions = [
+        {"predicted_class": "Iris-setosa", "confidence_scores": 1},
+        {"predicted_class": "Iris-versicolor", "confidence_scores": 1},
+        {"predicted_class": "Iris-virginica", "confidence_scores": 1}
+    ]
+    
+    # Assert the predictions
+    assert predictions == expected_predictions
