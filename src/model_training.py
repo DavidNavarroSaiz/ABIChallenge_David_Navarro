@@ -30,6 +30,7 @@ class KNNModel_Trainning:
         Trains a K-Nearest Neighbors classifier model using the provided dataset 
         and saves the trained model to a file.
         """
+        print("training new model")
         # Load dataset
         df = pd.read_csv(self.data_file)
         print(df.head())

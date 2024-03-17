@@ -26,12 +26,28 @@ if not inspector.has_table("Abi_InferenceTable"):
 def load_model():
     """
     Load the latest trained model.
+    If no model is found, train a new one.
     """
     model_files = [f for f in os.listdir('./src/models') if f.startswith('knn_model') and f.endswith('.joblib')]
+    if not model_files:
+        print("No trained model found. Training a new one...")
+        train_model()
+        model_files = [f for f in os.listdir('./src/models') if f.startswith('knn_model') and f.endswith('.joblib')]
     latest_model = max(model_files)
     name_last_model = os.path.join('./src/models', latest_model)
     print("predicting with model: ", name_last_model)
     return load(name_last_model)
+
+def train_model():
+    """
+    Train the KNN model over the Iris.csv Dataset.
+    """
+    try:
+        knn_model = KNNModel_Trainning('./src/Iris.csv', './src/models')
+        message = knn_model.train_and_save_model()
+        print(f"Model trained and saved successfully: {message}")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error during training: {str(e)}")
 
 predict_model = load_model()
 

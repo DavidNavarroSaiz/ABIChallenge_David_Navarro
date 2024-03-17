@@ -8,3 +8,8 @@ SQLAlchemy==2.0.28
 uvicorn==0.28.0
 numpy
 psycopg2-binary==2.9.1
+pylint
+pytest
+pytest-mock
+black
+
