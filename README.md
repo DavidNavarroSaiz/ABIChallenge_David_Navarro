@@ -132,7 +132,7 @@ Make sure you have the following prerequisites installed:
 
 ### Using the FastAPI Service
 
-To use the FastAPI service for interacting with the chatbot, follow these steps:
+To use the FastAPI service for interacting with the service, follow these steps:
 
 1. Run the FastAPI service:
 
