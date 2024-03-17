@@ -29,4 +29,9 @@ jobs:
           make test
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      
+      - name: Upload test results
+        uses: EnricoMi/upload-test-results-action@v1
+        with:
+          files: "**/test-report.xml"  # Assuming your test results are in JUnit XML format
+        env:
+          SONAR_LOGIN: ${{ secrets.SONAR_TOKEN }}  # You might need to use a different environment variable for SonarCloud authentication
