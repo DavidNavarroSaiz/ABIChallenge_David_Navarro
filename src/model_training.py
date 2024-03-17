@@ -62,10 +62,33 @@ class KNNModel_Trainning:
         message = f" Trained knn_model_{model_number} Test Accuracy: {formatted_accuracy}%"
 
         return message
+    
+    
+    def train_model(self):
+        """
+        Trains a K-Nearest Neighbors classifier model using the provided dataset 
+        and returns trained model 
+        """
+        # Load dataset
+        df = pd.read_csv(self.data_file)
+        print(df.head())
+
+        # Preprocess data
+        iris = df.drop("Id", axis= 1)
+        x = iris.drop("Species", axis=1)
+        y = iris["Species"]
+        x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
+
+        # Train KNN classifier
+        knn = KNeighborsClassifier(n_neighbors=1)
+        knn.fit(x_train, y_train)
+
+
+        return knn
 # Example usage
 if __name__ == "__main__":
     # Instantiate KNNModel
-    knn_model = KNNModel_Trainning(data_file='./Iris.csv', model_dir='./models')
+    knn_model = KNNModel_Trainning(data_file='./Iris.csv', model_directory='./models')
     
     # Train and save the model
     knn_model.train_and_save_model()
