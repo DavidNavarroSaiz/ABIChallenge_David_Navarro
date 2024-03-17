@@ -33,10 +33,10 @@ class DbManager:
             AbiInferenceTable: The newly created AbiInferenceTable object, or None if creation fails.
         """
         new_state = AbiInferenceTable(
-            SepalLengthCm=sepal_length_cm,
-            SepalWidthCm=sepal_width_cm,
-            PetalLengthCm=petal_length_cm,
-            PetalWidthCm=petal_width_cm,
+            sepal_length_cm=sepal_length_cm,
+            sepal_width_cm=sepal_width_cm,
+            petal_length_cm=petal_length_cm,
+            petal_width_cm=petal_width_cm,
             prediction=prediction,
             confidence=confidence,
             call_datetime=date_str,

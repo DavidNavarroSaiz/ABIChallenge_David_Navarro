@@ -60,10 +60,10 @@ class TrainData(BaseModel):
     model_dir: str
 
 class PredictionData(BaseModel):
-    SepalLengthCm: float
-    SepalWidthCm: float
-    PetalLengthCm: float
-    PetalWidthCm: float
+    sepal_length_cm: float
+    sepal_width_cm: float
+    petal_length_cm: float
+    petal_width_cm: float
 
 # Endpoints
 
@@ -101,25 +101,26 @@ async def predict(p_data_list: List[PredictionData] = Body(...)):
         dict: Batch predictions.
     Example input Data
         [
-            {
-                "SepalLengthCm": 5.1,
-                "SepalWidthCm": 3.5,
-                "PetalLengthCm": 1.4,
-                "PetalWidthCm": 0.2
-            },
-            {
-                "SepalLengthCm": 7.0,
-                "SepalWidthCm": 3.2,
-                "PetalLengthCm": 4.7,
-                "PetalWidthCm": 1.4
-            },
-            {
-                "SepalLengthCm": 6.5,
-                "SepalWidthCm": 3.2,
-                "PetalLengthCm": 5.1,
-                "PetalWidthCm": 2.0
-            }
-        ]
+    {
+        "sepal_length_cm": 5.1,
+        "sepal_width_cm": 3.5,
+        "petal_length_cm": 1.4,
+        "petal_width_cm": 0.2
+    },
+    {
+        "sepal_length_cm": 7.0,
+        "sepal_width_cm": 3.2,
+        "petal_length_cm": 4.7,
+        "petal_width_cm": 1.4
+    },
+    {
+        "sepal_length_cm": 6.5,
+        "sepal_width_cm": 3.2,
+        "petal_length_cm": 5.1,
+        "petal_width_cm": 2.0
+    }
+]
+
     """
     # try:
     predictor = Predictor(predict_model)

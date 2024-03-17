@@ -33,7 +33,7 @@ class Predictor:
         """
         predictions_batch = []
         for p_data in p_data_list:
-            input_data = [[p_data.SepalLengthCm, p_data.SepalWidthCm, p_data.PetalLengthCm, p_data.PetalWidthCm]]
+            input_data = [[p_data.sepal_length_cm, p_data.sepal_width_cm, p_data.petal_length_cm, p_data.petal_width_cm]]
             # Perform prediction
             probabilities = self.model.predict_proba(input_data)
             confidence_scores = max(probabilities[0])
@@ -42,7 +42,7 @@ class Predictor:
             # Get the current date and time
             date = datetime.today()
             # Add the prediction to the database
-            self.manager.add_new_prediction(p_data.SepalLengthCm, p_data.SepalWidthCm, p_data.PetalLengthCm, p_data.PetalWidthCm, predicted_class, confidence_scores, date)
+            self.manager.add_new_prediction(p_data.sepal_length_cm, p_data.sepal_width_cm, p_data.petal_length_cm, p_data.petal_width_cm, predicted_class, confidence_scores, date)
             
         return predictions_batch
     
@@ -58,7 +58,7 @@ class Predictor:
         """
         predictions_batch = []
         for p_data in p_data_list:
-            input_data = [[p_data.SepalLengthCm, p_data.SepalWidthCm, p_data.PetalLengthCm, p_data.PetalWidthCm]]
+            input_data = [[p_data.sepal_length_cm, p_data.sepal_width_cm, p_data.petal_length_cm, p_data.petal_width_cm]]
             # Perform prediction
             probabilities = self.model.predict_proba(input_data)
             confidence_scores = max(probabilities[0])
@@ -67,19 +67,3 @@ class Predictor:
 
             
         return predictions_batch
-# Usage Example
-if __name__ == "__main__":
-    # Load the trained model
-    model_path = "./src/models/knn_model.joblib"
-    model = load(model_path)
-    # Create a Predictor object with the loaded model
-    predictor = Predictor(model)
-    # Sample input data for prediction
-    sample_data = [
-        {"SepalLengthCm": 5.1, "SepalWidthCm": 3.5, "PetalLengthCm": 1.4, "PetalWidthCm": 0.2},
-        {"SepalLengthCm": 7.0, "SepalWidthCm": 3.2, "PetalLengthCm": 4.7, "PetalWidthCm": 1.4},
-        {"SepalLengthCm": 6.5, "SepalWidthCm": 3.2, "PetalLengthCm": 5.1, "PetalWidthCm": 2.0}
-    ]
-    # Perform prediction with confidence and print the results
-    predictions = predictor.predict_with_confidence(sample_data)
-    print(predictions)
