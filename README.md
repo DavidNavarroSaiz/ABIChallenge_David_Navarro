@@ -2,17 +2,21 @@
 [![Build](https://github.com/DavidNavarroSaiz/ABIChallenge_David_Navarro/actions/workflows/build.yml/badge.svg)](https://github.com/DavidNavarroSaiz/ABIChallenge_David_Navarro/actions/workflows/build.yml)
 
 
-<!-- PROJECT LOGO -->
 
 <h3 align="center">Abi challenge</h3>
 
   <p >
-    This project is a solution for the AB InBev MLOps Challenge v7
+    This project is a solution for the AB InBev MLOps Challenge v7 wher eit is implemented a RESTAPI Service ready for production
   </p>
 
 
 </div>
 
+# Architecture of the solution
+
+<p align="center">
+  <img src="./architecture.png" alt="Architecture">
+</p>
 
 
 <!-- TABLE OF CONTENTS -->
