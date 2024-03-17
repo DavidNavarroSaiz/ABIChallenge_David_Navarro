@@ -22,7 +22,7 @@ def test_predictor():
         PredictionData(SepalLengthCm=6.5, SepalWidthCm=3.2, PetalLengthCm=5.1, PetalWidthCm=2.0)
     ]
     # Perform prediction with confidence
-    predictions = predictor.predict_with_confidence(sample_data)
+    predictions = predictor.predict_with_confidence_no_store(sample_data)
     # Define expected predictions and confidence scores
     expected_predictions = [
         {"predicted_class": "Iris-setosa", "confidence_scores": 1},

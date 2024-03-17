@@ -45,6 +45,28 @@ class Predictor:
             self.manager.add_new_prediction(p_data.SepalLengthCm, p_data.SepalWidthCm, p_data.PetalLengthCm, p_data.PetalWidthCm, predicted_class, confidence_scores, date)
             
         return predictions_batch
+    
+    def predict_with_confidence_no_store(self, p_data_list) -> List[dict]:
+        """
+        Performs predictions on the input data list and adds the results to the database.
+
+        Args:
+            p_data_list (List[PredictionData]): List of input data for prediction.
+
+        Returns:
+            List[dict]: List of dictionaries containing predicted classes and confidence scores.
+        """
+        predictions_batch = []
+        for p_data in p_data_list:
+            input_data = [[p_data.SepalLengthCm, p_data.SepalWidthCm, p_data.PetalLengthCm, p_data.PetalWidthCm]]
+            # Perform prediction
+            probabilities = self.model.predict_proba(input_data)
+            confidence_scores = max(probabilities[0])
+            predicted_class = self.model.predict(input_data)[0]
+            predictions_batch.append({"predicted_class": predicted_class, "confidence_scores": confidence_scores})
+
+            
+        return predictions_batch
 # Usage Example
 if __name__ == "__main__":
     # Load the trained model
