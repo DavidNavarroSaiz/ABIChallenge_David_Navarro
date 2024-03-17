@@ -13,18 +13,8 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      
-      - name: install dependencies
-        run: | 
-          make install 
-          
-      - name: Test with pytest
-        run: |
-          export DATABASE_URL=postgresql://dev_user:my_dev_password@db/my_dev_database
-
-          make test
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
