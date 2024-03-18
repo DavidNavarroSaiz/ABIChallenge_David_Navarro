@@ -17,6 +17,9 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python }}
+      - name: install dependencies
+        run: | 
+          make install 
       - name: Set Environment Variables
         run: |
           echo "export DATABASE_URL=postgresql://dev_user:my_dev_password@db/my_dev_database" >> $GITHUB_ENV
