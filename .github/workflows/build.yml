@@ -21,7 +21,7 @@ jobs:
         run: pip install tox
       - name: Set Environment Variables
         run: |
-          export DATABASE_URL="postgresql://dev_user:my_dev_password@db/my_dev_database"
+          echo "export DATABASE_URL=${{ secrets.DATABASE_URL }}" >> $GITHUB_ENV
       - name: Run tox
         run: tox -e py
       - name: SonarCloud Scan

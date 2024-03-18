@@ -1,7 +1,6 @@
 from typing import List
 from src.db_manager import DbManager
 from datetime import datetime
-from joblib import load
 from dotenv import load_dotenv
 import os
 
