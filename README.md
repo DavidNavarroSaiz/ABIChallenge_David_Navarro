@@ -1,4 +1,5 @@
 <a name="readme-top"></a>
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=DavidNavarroSaiz_ABIChallenge_David_Navarro&metric=alert_status&token=cc3e601accdaf1c16730956d68f92461ce5fedcf)](https://sonarcloud.io/summary/new_code?id=DavidNavarroSaiz_ABIChallenge_David_Navarro)
 [![Build](https://github.com/DavidNavarroSaiz/ABIChallenge_David_Navarro/actions/workflows/build.yml/badge.svg)](https://github.com/DavidNavarroSaiz/ABIChallenge_David_Navarro/actions/workflows/build.yml)
 
 
